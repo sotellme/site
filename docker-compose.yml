@@ -9,3 +9,9 @@ services:
     ports:
       - "8080:80"
       - "8081:443"
+    links:
+      - api
+  api:
+    image: m4burns/sotellme:latest
+    build:
+      context: ./server
