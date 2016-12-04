@@ -1,0 +1,36 @@
+caller side:
+
+- dial queue, timeout = 1
+  - when timeout:
+    - poll callee list
+    - if callee available:
+      - dial callee
+    - else
+      - enqueue, timeout = 5 min, music
+
+- conversation prompt on connect?
+
+/voice
+
+<?xml version="1.0" encoding="UTF-8"?>
+<Response>
+  <Dial timeout="1" action="/step2">
+    <Queue>sotellme queue</Queue>
+  </Dial>
+</Response>
+
+/step2
+
+if DialCallStatus == no-answer:
+  if $callee:
+    <?xml version="1.0" encoding="UTF-8"?>
+    <Response>
+      <Dial timeout="20" action="/step3">
+        $callee
+      </Dial>
+    </Response>
+  else:
+    <?xml version="1.0" encoding="UTF-8"?>
+    <Response>
+      <Enqueue timeout="300" waitUrl="/music">sotellme queue</Enqueue>
+    </Response>
