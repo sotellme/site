@@ -15,6 +15,6 @@ RUN pacman --noconfirm --force -Syu \
   && pacman --noconfirm -R git binutils gcc make fakeroot \
   && pacman --noconfirm --force -Scc
 
-EXPOSE 5083
+EXPOSE 5038
 ADD ./entrypoint.sh /
 ENTRYPOINT /entrypoint.sh
