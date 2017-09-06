@@ -1,0 +1,25 @@
+version: '3'
+services:
+  asterisk:
+    build: ../asterisk
+    image: sotellme/asterisk
+    volumes:
+      - ./asterisk-config/extensions.conf:/etc/asterisk/extensions.conf
+      - ./asterisk-config/sip.conf:/etc/asterisk/sip.conf
+      - ./asterisk-config/manager.conf:/etc/asterisk/manager.conf
+      - ./asterisk-config/confbridge.conf:/etc/asterisk/confbridge.conf
+    networks:
+      - backend
+  phonebackend:
+    build: .
+    image: sotellme/phonebackend
+    volumes:
+      - ./backend.py:/backend/backend.py
+    ports:
+      - "127.0.0.1:8080:8080"
+    networks:
+      - backend
+    environment:
+      - PYTHONUNBUFFERED=1
+networks:
+  backend:
