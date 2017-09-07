@@ -14,12 +14,16 @@ services:
     build: .
     image: sotellme/phonebackend
     volumes:
-      - ./backend.py:/backend/backend.py
+      - ./:/backend
     ports:
       - "127.0.0.1:8080:8080"
     networks:
       - backend
     environment:
       - PYTHONUNBUFFERED=1
+  redis:
+    image: redis
+    networks:
+      - backend
 networks:
   backend:
