@@ -25,7 +25,7 @@ const router = (
     <Router history = {browserHistory} onUpdate={hashLinkScroll}>
       <Route path="/" component={App}>
         <IndexRoute component={ Home }></IndexRoute>
-        <Route exact path="/room/:id" component={ Room }></Route>
+        <Route path="room/:id" component={ Room }></Route>
       </Route>
     </Router>
 )
